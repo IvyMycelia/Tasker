@@ -24,7 +24,7 @@ Opens up the specified task log for you to edit.
 The tasker read command has several arguments.
 
 - `tskr read <log>`: Outputs every entry in the specified log
-- `tskr read <log> -i <entry_index>`: Shows only the index you provide (can provide multiple via `i1,i2`)
+- `tskr read <log> -i <entry_id>`: Shows only the index you provide (can provide multiple via `i1,i2`)
 - `tskr read <log> -h <header>`: Shows only the results for entries with the specified header (can provide multiple via `h1,h2`)
 
 
@@ -47,7 +47,7 @@ You will be prompted with a confirmation message.
 ### Remove An Entry:
 
 There's several methods to remove entires from a task log:
-- `tskr rmentry <log> -i <index>`: Removes the specified index (can provide multiple via `i1,i2`)
+- `tskr rmentry <log> -i <id>`: Removes the specified UUID (can provide multiple via `i1,i2`)
 - `tskr rmentry <log> -h <header>`: Removes the specified header (can provide multiple via `h1, h2`)
 
 Be mindful that if multiple entries are provided, it will prompt you with a confirmation message.
@@ -81,14 +81,14 @@ You can edit the default commands to include your preferred pseudonyms for both 
 
 ### Default Pseudonyms For Commands:
 
-- `config` : `cnfg`
+- `config` : `cfg`
 - `edit`   : `edt`
 - *Will Add More Later..*
 
 
 ### Default Pseudonyms For Arguments:
 
-- `-i`  : `-index`
+- `-i`  : `-id`
 - `-h`  : `-header`
 - *Will Add More Later..*
 
