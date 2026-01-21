@@ -1,8 +1,16 @@
 #include <string.h>
+#include <stdlib.h>
 #include <stdio.h>
+#include <errno.h>
+
 #include "install.h"
 
 int main(int argc, char *argv[]) {
+	if (init_paths() != 0) {
+		fprintf(stderr, "Failed to initialize paths\n");
+		return 1;
+	}
+
 	if (argc < 2) {
 		fprintf(stderr, "Please provide an argument. Use `tskr --help` to see available commands\n");
 		return -1;
@@ -13,9 +21,14 @@ int main(int argc, char *argv[]) {
 			fprintf(stderr, "Please provide a name for the log\n");
 			return -1;
 		}
-
-		printf("Created file: `%s.dmp`\n", argv[2]);
-	
+		char log_file[512];
+		snprintf(log_file, sizeof(log_file), "%s/%s.tsk", logs_path, argv[2]);
+		FILE *log = fopen(log_file, "a");
+		if (!log) perror("Could not create log file");
+		else {
+			printf("Created file: `%s.tsk`\n", argv[2]);
+			fclose(log);
+		}
 	} 
 	else if (!strcmp(argv[1], "test")) {
 		printf("Hello, World!\n");
