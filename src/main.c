@@ -21,7 +21,38 @@ int main(int argc, char *argv[]) {
 		printf("Hello, World!\n");
 	} 
 	else if (!strcmp(argv[1], "install")) {
-		install();
+		int install_status = install();
+		if (install_status != 0) {
+			printf("Could not successfully install all items: ");
+			switch (install_status) {
+				case 1:
+					printf("Failed at creating base folder\n");
+					break;
+
+				case 2:
+                                        printf("Failed at creating settings folder\n");
+                                        break;
+
+				case 3:
+                                        printf("Failed at creating cache folder\n");
+                                        break;
+
+				case 4:
+                                        printf("Failed at creating logs folder\n");
+                                        break;
+
+				case 5:
+                                        printf("Failed at creating settings.conf file\n");
+                                        break;
+
+				case 6:
+                                        printf("Failed at creating commands.src file\n");
+                                        break;
+				
+				default:
+					printf("Unknown error occured :c\n");
+			}
+		}
 	} 
 	else {
 		fprintf(stderr, "Argument not recognized: %s\n", argv[1]);
