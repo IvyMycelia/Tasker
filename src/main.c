@@ -4,6 +4,7 @@
 #include <errno.h>
 
 #include "install.h"
+#include "list.h"
 
 int main(int argc, char *argv[]) {
 	if (init_paths() != 0) {
@@ -29,7 +30,13 @@ int main(int argc, char *argv[]) {
 			printf("Created file: `%s.tsk`\n", argv[2]);
 			fclose(log);
 		}
-	} 
+	}
+	else if (!strcmp(argv[1], "list")) {
+		if (list_task_logs(logs_path) != 0) {
+			fprintf(stderr, "Failed to list task logs\n");
+			return 1;
+		}
+	}
 	else if (!strcmp(argv[1], "test")) {
 		printf("Hello, World!\n");
 	} 
